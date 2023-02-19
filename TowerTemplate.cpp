@@ -1,7 +1,6 @@
 #include "TowerTemplate.h"
 
-TowerTemplate::TowerTemplate():
-	tower_data{}
+TowerTemplate::TowerTemplate()
 {
 }
 
@@ -9,12 +8,23 @@ TowerTemplate::~TowerTemplate()
 {
 }
 
-const bool TowerTemplate::LoadDataFromFile(const std::string& file_name)
+const bool TowerTemplate::loadFromFile(const std::string& file_name)
 {
+	if (
+		this->loadDataFromFile(file_name + "/data.dat") &&
+		this->loadAnimationFromFile(file_name + "/animation")
+		) {
+		return true;
+	}
 	return false;
 }
 
-const bool TowerTemplate::LoadAnimationFromFile(const std::string& file_name)
+const bool TowerTemplate::loadDataFromFile(const std::string& file_name)
 {
-	return false;
+	return this->data_template.loadFromFile(file_name);
+}
+
+const bool TowerTemplate::loadAnimationFromFile(const std::string& file_name)
+{
+	return this->animation_component_template.loadFromFile(file_name);
 }

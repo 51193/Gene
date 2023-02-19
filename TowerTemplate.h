@@ -1,20 +1,25 @@
 #ifndef TOWERTEMPLATE_H
 #define TOWERTEMPLATE_H
 
-#include"TowerData.h"
+#include<utility>
+
+#include"DataTemplate.h"
+#include"AnimationComponentTemplate.h"
 
 class TowerTemplate
 {
 private:
-	
-	TowerData tower_data;
+	DataTemplate data_template;
+	AnimationComponentTemplate animation_component_template;
+
+	const bool loadDataFromFile(const std::string& file_name);//读取数据
+	const bool loadAnimationFromFile(const std::string& file_name);//读取动画
 
 public:
 	TowerTemplate();
 	~TowerTemplate();
 
-	const bool LoadDataFromFile(const std::string& file_name);
-	const bool LoadAnimationFromFile(const std::string& file_name);
+	const bool loadFromFile(const std::string& file_name);
 };
 
 #endif TOWERTEMPLATE_H

@@ -1,6 +1,6 @@
 #include "Tower.h"
 
-Tower::Tower(std::string& name, sf::Vector2u& pos) :
+Tower::Tower(const std::string& name, sf::Vector2u& pos) :
 	pos{ pos }
 {
 }

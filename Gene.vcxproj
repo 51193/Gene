@@ -145,7 +145,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationComponent.cpp" />
+    <ClCompile Include="AnimationComponentTemplate.cpp" />
+    <ClCompile Include="AnimationTemplate.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="DataComponent.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -153,18 +158,23 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Tower.cpp" />
-    <ClCompile Include="TowerData.cpp" />
+    <ClCompile Include="Datatemplate.cpp" />
     <ClCompile Include="TowerTemplate.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="AnimationComponentTemplate.h" />
+    <ClInclude Include="AnimationTemplate.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="DataComponent.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Tower.h" />
-    <ClInclude Include="TowerData.h" />
+    <ClInclude Include="DataTemplate.h" />
     <ClInclude Include="TowerTemplate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

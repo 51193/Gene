@@ -7,8 +7,7 @@ void Field::init()
 
 void Field::initField()
 {
-	std::string path = "Save/" + file_name;
-	std::ifstream input(path, std::ios::in);
+	std::ifstream input(file_name, std::ios::in);
 
 	unsigned int temp_x{ 0 };
 	unsigned int temp_y{ 0 };
@@ -25,6 +24,8 @@ void Field::initField()
 		this->towers.push_back(new Tower(name, temp));
 		input >> name;
 	}
+
+	input.close();
 }
 
 void Field::update()

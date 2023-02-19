@@ -28,6 +28,12 @@
     <Filter Include="Tower">
       <UniqueIdentifier>{5e4dc5c4-fb8e-4764-b8c1-c1bbb1874fe0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{8940fe1a-249c-4d56-90f1-b4793e46f8cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{7f891992-3bab-4d93-89f1-8896aac90ffa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -57,8 +63,23 @@
     <ClCompile Include="TowerTemplate.cpp">
       <Filter>Tower</Filter>
     </ClCompile>
-    <ClCompile Include="TowerData.cpp">
-      <Filter>Tower</Filter>
+    <ClCompile Include="Datatemplate.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTemplate.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationComponentTemplate.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="DataComponent.cpp">
+      <Filter>Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,8 +107,23 @@
     <ClInclude Include="TowerTemplate.h">
       <Filter>Tower</Filter>
     </ClInclude>
-    <ClInclude Include="TowerData.h">
-      <Filter>Tower</Filter>
+    <ClInclude Include="DataTemplate.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTemplate.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponentTemplate.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="DataComponent.h">
+      <Filter>Data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
