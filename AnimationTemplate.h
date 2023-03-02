@@ -11,7 +11,7 @@ class AnimationTemplate
 private:
 	sf::Texture texture_sheet;
 
-	float time_each_frame;
+	unsigned int time_each_frame;
 	unsigned int frame;
 	sf::Vector2i size;
 
@@ -25,7 +25,7 @@ public:
 	const bool loadFromFile(const std::string& file_name);//输入包含config.dat和texture.png的文件夹以载入数据
 
 	sf::Texture& getTextureSheet();
-	const float& getTimeEachFrame();
+	const unsigned int& getTimeEachFrame();
 	const unsigned int& getFrame();
 	const sf::Vector2i& getSize();
 };

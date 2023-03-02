@@ -11,8 +11,8 @@ AnimationTemplate::~AnimationTemplate()
 const bool AnimationTemplate::loadFromFile(const std::string& file_name)
 {
 	if (
-		this->loadConfigFromFile(file_name + "/config.dat") &&
-		this->loadTextureFromFile(file_name + "/texture.png")
+		this->loadConfigFromFile(file_name + "\\config.dat") &&
+		this->loadTextureFromFile(file_name + "\\texture.png")
 		)
 		return true;
 	return false;
@@ -23,7 +23,7 @@ sf::Texture& AnimationTemplate::getTextureSheet()
 	return this->texture_sheet;
 }
 
-const float& AnimationTemplate::getTimeEachFrame()
+const unsigned int& AnimationTemplate::getTimeEachFrame()
 {
 	return this->time_each_frame;
 }

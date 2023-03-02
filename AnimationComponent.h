@@ -11,11 +11,17 @@ private:
 
 	std::string last_animation_name;
 
+	bool is_loaded;
+
 public:
-	AnimationComponent(sf::Sprite& sprite, AnimationComponentTemplate& animation_component_template);
+	AnimationComponent();
 	~AnimationComponent();
 
-	void play(const std::string& name, const float& dt);
+	void loadFromTemplate(sf::Sprite& sprite, AnimationComponentTemplate& animation_component_template);
+
+	const bool isLoaded();
+
+	void play(const std::string& name);
 };
 
 #endif

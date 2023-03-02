@@ -1,8 +1,6 @@
 #ifndef FIELD_H
 #define FIELD_H
 
-#include<iostream>
-
 #include "Tower.h"
 
 class Field
@@ -23,8 +21,8 @@ public:
 
 	~Field();
 
-	void update();
-	void render(sf::RenderTarget& target, const sf::FloatRect& field_size);
+	void update(sf::RectangleShape& display_shape, sf::RenderWindow& window);
+	void render(sf::RenderTarget& target);
 };
 
 #endif

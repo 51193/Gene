@@ -34,6 +34,9 @@
     <Filter Include="Animation">
       <UniqueIdentifier>{7f891992-3bab-4d93-89f1-8896aac90ffa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{be75aa21-3729-4279-a631-6104549a1ecd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -63,7 +66,7 @@
     <ClCompile Include="TowerTemplate.cpp">
       <Filter>Tower</Filter>
     </ClCompile>
-    <ClCompile Include="Datatemplate.cpp">
+    <ClCompile Include="DataComponentTemplate.cpp">
       <Filter>Data</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
@@ -80,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="DataComponent.cpp">
       <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,7 +113,7 @@
     <ClInclude Include="TowerTemplate.h">
       <Filter>Tower</Filter>
     </ClInclude>
-    <ClInclude Include="DataTemplate.h">
+    <ClInclude Include="DataComponentTemplate.h">
       <Filter>Data</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
@@ -124,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="DataComponent.h">
       <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

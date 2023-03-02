@@ -13,7 +13,7 @@ class GameState :
 {
 protected:
 
-	std::map<std::string, sf::RectangleShape*>squares;
+	std::map<std::string, sf::RectangleShape>squares;
 
 	float timer;
 	float fixed_time;//表示棋盘上每帧需要的时间

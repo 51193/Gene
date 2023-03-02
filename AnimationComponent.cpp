@@ -1,11 +1,8 @@
 #include "AnimationComponent.h"
 
-AnimationComponent::AnimationComponent(sf::Sprite& sprite, AnimationComponentTemplate& animation_component_template)
+AnimationComponent::AnimationComponent()
+	:is_loaded{ false }
 {
-	std::map<std::string, AnimationTemplate>& animation_templates{ animation_component_template.getAnimationTemplates() };
-	for (auto& i : animation_templates) {
-		this->animations[i.first] = new Animation(sprite, i.second);
-	}
 }
 
 AnimationComponent::~AnimationComponent()
@@ -15,14 +12,29 @@ AnimationComponent::~AnimationComponent()
 	}
 }
 
-void AnimationComponent::play(const std::string& name, const float& dt)
+void AnimationComponent::loadFromTemplate(sf::Sprite& sprite, AnimationComponentTemplate& animation_component_template)
+{
+	std::map<std::string, AnimationTemplate>& animation_templates{ animation_component_template.getAnimationTemplates() };
+	for (auto& i : animation_templates) {
+		this->animations[i.first] = new Animation(sprite, i.second);
+	}
+	this->last_animation_name = this->animations.begin()->first;
+	this->is_loaded = true;
+}
+
+const bool AnimationComponent::isLoaded()
+{
+	return is_loaded;
+}
+
+void AnimationComponent::play(const std::string& name)
 {
 	if (name == this->last_animation_name) {
-		this->animations[name]->play(dt);
+		this->animations[name]->play();
 	}
 	else {
 		this->animations[last_animation_name]->reset();
-		this->animations[name]->play(dt);
+		this->animations[name]->play();
 		this->last_animation_name = name;
 	}
 }

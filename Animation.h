@@ -10,11 +10,11 @@ private:
 	sf::Sprite& sprite;
 	sf::Texture& texture_sheet;
 
-	float timer;
-	const float& time_each_frame;
+	unsigned int timer;
+	const unsigned int time_each_frame;
 
 	unsigned int current_frame;
-	const unsigned int& frame;
+	const unsigned int frame;
 
 	const sf::Vector2i& size;
 
@@ -25,7 +25,7 @@ public:
 
 	void reset();
 
-	void play(const float dt);
+	void play();
 
 };
 
