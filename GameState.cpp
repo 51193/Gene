@@ -4,7 +4,7 @@ void GameState::init()
 {
 	this->initUI();
 	this->field = new Field("Save\\test.sav");
-	this->field->update(this->squares["field_area"], this->window);
+	this->field->updateSprite(this->squares["field_area"]);
 }
 
 void GameState::initUI()
@@ -34,7 +34,7 @@ void GameState::renderUI(sf::RenderTarget& target)
 }
 
 GameState::GameState(sf::RenderWindow& window, sf::Font& font, std::stack<State*>& states)
-	:State{ window, font, states }, timer{ 0.f }, fixed_time{ 1.f }
+	:State{ window, font, states }, timer{ 0.f }, fixed_time{ 1/60.f }
 {
 	this->init();
 }
@@ -52,7 +52,7 @@ void GameState::update(const float& dt)
 		unsigned int frames = (unsigned int)(this->timer / this->fixed_time);
 		for (size_t j{ 0 }; j < frames; j++) {
 			//update ÆåÅÌµÄ¹Ì¶¨Ö¡Êý
-			this->field->update(this->squares["field_area"], this->window);
+			this->field->update(this->squares["field_area"]);
 		}
 		this->timer = this->timer - frames * fixed_time;
 	}

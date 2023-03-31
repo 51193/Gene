@@ -37,6 +37,12 @@
     <Filter Include="Bullet">
       <UniqueIdentifier>{be75aa21-3729-4279-a631-6104549a1ecd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{81d8a761-f2cf-4a82-99ed-69f58011acb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TinyStuff">
+      <UniqueIdentifier>{3c19f723-8929-4a47-b018-bbbf5bc37f58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -87,6 +93,15 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrier.cpp">
+      <Filter>TinyStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="JudgeFunctions.cpp">
+      <Filter>TinyStuff</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -134,5 +149,22 @@
     <ClInclude Include="Bullet.h">
       <Filter>Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrier.h">
+      <Filter>TinyStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="JudgeFunctions.h">
+      <Filter>TinyStuff</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gene.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

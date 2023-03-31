@@ -149,12 +149,15 @@
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AnimationComponentTemplate.cpp" />
     <ClCompile Include="AnimationTemplate.cpp" />
+    <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="DataComponent.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="JudgeFunctions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="State.cpp" />
@@ -167,17 +170,24 @@
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AnimationComponentTemplate.h" />
     <ClInclude Include="AnimationTemplate.h" />
+    <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="DataComponent.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="JudgeFunctions.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Tower.h" />
     <ClInclude Include="DataComponentTemplate.h" />
     <ClInclude Include="TowerTemplate.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Gene.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
