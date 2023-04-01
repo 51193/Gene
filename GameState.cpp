@@ -9,6 +9,8 @@ void GameState::init()
 
 void GameState::initUI()
 {
+	float a{ 1.f };
+
 	this->squares["background"].setFillColor(sf::Color::White);
 	this->squares["background"].setPosition(0.f, 0.f);
 	this->squares["background"].setSize(sf::Vector2f((float)this->window.getSize().x, (float)this->window.getSize().y));
@@ -19,10 +21,10 @@ void GameState::initUI()
 	this->squares["field_area"].setPosition(3.f, 3.f);
 
 	if ((float)this->window.getSize().x / (float)this->window.getSize().y > 16.f / 9.f) {
-		this->squares["field_area"].setSize(sf::Vector2f((float)(this->window.getSize().y * 0.75 * (16.f / 9.f)), (float)(this->window.getSize().y * 0.75)));
+		this->squares["field_area"].setSize(sf::Vector2f((float)(this->window.getSize().y * a * (16.f / 9.f)), (float)(this->window.getSize().y * a)));
 	}
 	else {
-		this->squares["field_area"].setSize(sf::Vector2f((float)(this->window.getSize().x * 0.75), (float)(this->window.getSize().x * 0.75 * (9.f / 16.f))));
+		this->squares["field_area"].setSize(sf::Vector2f((float)(this->window.getSize().x * a), (float)(this->window.getSize().x * a * (9.f / 16.f))));
 	}
 }
 

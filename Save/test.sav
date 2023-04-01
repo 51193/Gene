@@ -1,28 +1,6 @@
 1600 900
 default
-200 300
-default
-200 500
-default
-200 700
-default
-400 300
-default
-400 500
-default
-400 700
-default
-600 300
-default
-600 500
-default
-600 700
-default
-800 300
-default
-800 500
-default
-800 700
+800 450
 entity
 100 100
 entity

@@ -66,6 +66,29 @@ bool JudgeFunctions::CircleandLine(sf::Vector2f cir_center, float cir_radius, sf
 	}
 }
 
+bool JudgeFunctions::LineandLine(sf::Vector2f point1_1, sf::Vector2f point1_2, sf::Vector2f point2_1, sf::Vector2f point2_2)
+{
+	if (std::max(point2_1.x, point2_2.x) < std::min(point1_1.x, point1_2.x) ||
+		std::max(point1_1.x, point1_2.x) < std::min(point2_1.x, point2_2.x) ||
+		std::max(point2_1.y, point2_2.y) < std::min(point1_1.y, point1_2.y) ||
+		std::max(point1_1.y, point1_2.y) < std::min(point2_1.y, point2_2.y))
+	{
+		return false;
+	}
+	else if (
+		JudgeFunctions::Cross(point1_1 - point2_2, point2_1 - point2_2) *
+		JudgeFunctions::Cross(point1_2 - point2_2, point2_1 - point2_2) > 0 ||
+		JudgeFunctions::Cross(point2_2 - point1_2, point1_1 - point1_2) *
+		JudgeFunctions::Cross(point2_1 - point1_2, point1_1 - point1_2) > 0) 
+	{
+		return false;
+	}
+	else 
+	{
+		return true;
+	}
+}
+
 float JudgeFunctions::CircleandLineVerticalLength(sf::Vector2f cir_center, float cir_radius, sf::Vector2f point1, sf::Vector2f point2)
 {
 	point1 -= cir_center;
@@ -77,7 +100,35 @@ float JudgeFunctions::CircleandLineVerticalLength(sf::Vector2f cir_center, float
 	return JudgeFunctions::PointDistance(X, sf::Vector2f(0.f, 0.f));
 }
 
+sf::Vector2f JudgeFunctions::LineandLineIntersectionPoint(sf::Vector2f point1_1, sf::Vector2f point1_2, sf::Vector2f point2_1, sf::Vector2f point2_2)
+{
+	float k1 = (point1_1.y - point1_2.y) / (point1_1.x - point1_2.x);
+	float k2 = (point2_1.y - point2_2.y) / (point2_1.x - point2_2.x);
+
+	float x1 = point1_1.x;
+	float y1 = point1_1.y;
+
+	float x2 = point1_2.x;
+	float y2 = point1_2.y;
+
+	float x3 = point2_1.x;
+	float y3 = point2_1.y;
+
+	float x4 = point2_2.x;
+	float y4 = point2_2.y;
+
+	float x = (y3 - y1 + (y1 - y2) / (x1 - x2) * x1 - (y3 - y4) / (x3 - x4) * x3) / ((y1 - y2) / (x1 - x2) - (y3 - y4) / (x3 - x4));
+	float y = y1 + (x - x1) * (y1 - y2) / (x1 - x2);
+
+	return sf::Vector2f(x, y);
+}
+
 float JudgeFunctions::PointDistance(sf::Vector2f point1, sf::Vector2f point2)
 {
 	return sqrtf((point1.x - point2.x) * (point1.x - point2.x) + (point1.y - point2.y) * (point1.y - point2.y));
+}
+
+float JudgeFunctions::Cross(sf::Vector2f point1, sf::Vector2f point2)
+{
+	return point1.x * point2.y - point2.x * point1.y;
 }

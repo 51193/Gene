@@ -3,7 +3,7 @@
 DataComponentTemplate Entity::data_component_template;
 
 Entity::Entity(sf::Vector2u pos)
-	:pos{ pos }, health_point{ 0 }, is_dead{ false }, velocity{ 0.f,0.f }
+	:pos{ pos }, health_point{ 0 }, is_dead{ false }, velocity{ 0.f,0.f }, move_timer{ 0 }, ready_to_move{ true }
 {
 	this->init();
 }
@@ -16,8 +16,6 @@ void Entity::init()
 {
 	this->initDataComponent();
 	this->initAppearance();
-
-	this->assignVelocity(sf::Vector2f(0.f, 5.f));
 }
 
 void Entity::initDataComponent()
@@ -29,6 +27,7 @@ void Entity::initDataComponent()
 	this->data_component.loadFromTemplate(this->data_component_template);
 
 	this->health_point = (int)this->data_component.get("HEALTH");
+	this->move_cooldown = this->data_component.get("MOVE_COOLDOWN");
 }
 
 void Entity::initAppearance()
@@ -96,6 +95,7 @@ void Entity::eyesight(std::vector<Bullet*>& bullets, std::vector<Entity*>& entit
 	for (size_t i{ 0 }; i < eye_sight_count; i++) {
 		this->eye_sight.push_back(EyeSight{ this->pos + (float)eye_sight_length * sf::Vector2f(std::cosf(eye_sight_deviation_angle * i), std::sinf(eye_sight_deviation_angle * i)), (float)eye_sight_length, 0.f });
 	}
+
 	for (auto& i : this->eye_sight) {
 		for (auto& j : bullets) {
 			if (JudgeFunctions::CircleandLine(j->getPos(), (float)j->getDataComponent().get("BULLET_RADIUS"), this->pos, i.point)) {
@@ -146,8 +146,113 @@ void Entity::eyesight(std::vector<Bullet*>& bullets, std::vector<Entity*>& entit
 			}
 		}
 
-		for (auto& j : barrier_map) {
+		/*for (auto& j : barrier_map) {
+			if (JudgeFunctions::LineandLine(this->pos, i.point,
+				sf::Vector2f(j.center.x - j.size.x / 2.f, j.center.y - j.size.y / 2.f),
+				sf::Vector2f(j.center.x + j.size.x / 2.f, j.center.y - j.size.y / 2.f))) 
+			{
+				float temp_length = JudgeFunctions::PointDistance(
+					this->pos,
+					JudgeFunctions::LineandLineIntersectionPoint(
+						this->pos, i.point,
+						sf::Vector2f(j.center.x - j.size.x / 2.f, j.center.y - j.size.y / 2.f),
+						sf::Vector2f(j.center.x + j.size.x / 2.f, j.center.y - j.size.y / 2.f)));
 
+				if (i.remain_length > temp_length) {
+					i.remain_length = temp_length;
+					i.output_strength = 4.f * (eye_sight_length - i.remain_length) / eye_sight_length;
+				}
+			}
+
+			if (JudgeFunctions::LineandLine(this->pos, i.point,
+				sf::Vector2f(j.center.x - j.size.x / 2.f, j.center.y - j.size.y / 2.f),
+				sf::Vector2f(j.center.x - j.size.x / 2.f, j.center.y + j.size.y / 2.f))) 
+			{
+				float temp_length = JudgeFunctions::PointDistance(
+					this->pos,
+					JudgeFunctions::LineandLineIntersectionPoint(
+						this->pos, i.point,
+						sf::Vector2f(j.center.x - j.size.x / 2.f, j.center.y - j.size.y / 2.f),
+						sf::Vector2f(j.center.x - j.size.x / 2.f, j.center.y + j.size.y / 2.f)));
+
+				if (i.remain_length > temp_length) {
+					i.remain_length = temp_length;
+					i.output_strength = 4.f * (eye_sight_length - i.remain_length) / eye_sight_length;
+				}
+			}
+
+			if (JudgeFunctions::LineandLine(this->pos, i.point,
+				sf::Vector2f(j.center.x + j.size.x / 2.f, j.center.y + j.size.y / 2.f),
+				sf::Vector2f(j.center.x - j.size.x / 2.f, j.center.y + j.size.y / 2.f))) 
+			{
+				float temp_length = JudgeFunctions::PointDistance(
+					this->pos,
+					JudgeFunctions::LineandLineIntersectionPoint(
+						this->pos, i.point,
+						sf::Vector2f(j.center.x + j.size.x / 2.f, j.center.y + j.size.y / 2.f),
+						sf::Vector2f(j.center.x - j.size.x / 2.f, j.center.y + j.size.y / 2.f)));
+
+				if (i.remain_length > temp_length) {
+					i.remain_length = temp_length;
+					i.output_strength = 4.f * (eye_sight_length - i.remain_length) / eye_sight_length;
+				}
+			}
+
+			if (JudgeFunctions::LineandLine(this->pos, i.point,
+				sf::Vector2f(j.center.x + j.size.x / 2.f, j.center.y + j.size.y / 2.f),
+				sf::Vector2f(j.center.x + j.size.x / 2.f, j.center.y - j.size.y / 2.f))) 
+			{
+				float temp_length = JudgeFunctions::PointDistance(
+					this->pos,
+					JudgeFunctions::LineandLineIntersectionPoint(
+						this->pos, i.point,
+						sf::Vector2f(j.center.x + j.size.x / 2.f, j.center.y + j.size.y / 2.f),
+						sf::Vector2f(j.center.x + j.size.x / 2.f, j.center.y - j.size.y / 2.f)));
+
+				if (i.remain_length > temp_length) {
+					i.remain_length = temp_length;
+					i.output_strength = 4.f * (eye_sight_length - i.remain_length) / eye_sight_length;
+				}
+			}
+		}*/
+	}
+}
+
+void Entity::moveIntention()
+{
+	if (this->ready_to_move) {
+		sf::Vector2f temp{ 0.f,0.f };
+		for (auto& i : this->eye_sight) {
+			if (i.output_strength > 0.01)
+				temp += sf::Vector2f(
+					(i.point.x - this->pos.x) / JudgeFunctions::PointDistance(i.point, this->pos) * 1,
+					(i.point.y - this->pos.y) / JudgeFunctions::PointDistance(i.point, this->pos) * 1
+				);
+		}
+
+		float x = temp.x;
+		float y = temp.y;
+
+		temp.x = -y;
+		temp.y = x;
+
+		float dis = JudgeFunctions::PointDistance(sf::Vector2f(0.f, 0.f), temp);
+		if (dis > (float)0.01 && JudgeFunctions::PointDistance(sf::Vector2f(0.f, 0.f), this->velocity) < 5.f) {
+			this->assignVelocity(
+				sf::Vector2f(
+					temp.x / dis * this->data_component.get("VELOCITY"),
+					temp.y / dis * this->data_component.get("VELOCITY")
+				)
+			);
+			this->ready_to_move = false;
+		}
+
+	}
+	else {
+		this->move_timer++;
+		if (this->move_timer >= this->move_cooldown) {
+			this->ready_to_move = true;
+			this->move_timer = 0;
 		}
 	}
 }
@@ -197,6 +302,7 @@ void Entity::updateLogic(std::vector<Bullet*>& bullets, std::vector<Entity*>& en
 {
 	if (!is_dead) {
 		this->eyesight(bullets, entities, barrier_map);
+		this->moveIntention();
 		this->move();
 	}
 }

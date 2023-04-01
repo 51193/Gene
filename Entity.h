@@ -28,6 +28,10 @@ private:
 	int health_point;
 	bool is_dead;
 
+	unsigned int move_cooldown;
+	unsigned int move_timer;
+	bool ready_to_move;
+
 	sf::Vector2f velocity;
 
 	std::map<std::string, sf::CircleShape>appearance;
@@ -41,6 +45,8 @@ private:
 	void move();
 	void friction();
 	void eyesight(std::vector<Bullet*>& bullets, std::vector<Entity*>& entities, std::vector<Barrier>& barrier_map);
+
+	void moveIntention();
 
 public:
 	Entity(sf::Vector2u pos);
